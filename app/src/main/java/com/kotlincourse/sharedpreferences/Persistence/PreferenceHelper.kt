@@ -31,6 +31,25 @@ class PreferenceHelper {
     //clear button
     fun clearString (key: String) = setString(key, null) //
 
+    // ---------------------------------------------------------------------------------for the integer vale: AGE
+
+    fun setInt (key: String, value: Int){ //I need to pass a key and a value
+        editor = appPref.edit() ?:
+                editor.putInt(key, value)
+        editor.apply()
+    }
+
+    //load button
+    fun getInt (key: String): Int? {
+        return appPref.getInt(key, 20)
+
+    }
+
+    //clear button
+    fun clearInt (key: String) = setString(key, null) //
+
+    // ---------------------------------------------------------------------------------for the integer vale: AGE
+
     // 9 - the functions below are just for get 1 parameter, a lot people do the same for each parameter they have
     //In the below functions, editor just support just a kind of values in this case just editor.putString. if we have for example: doubles or integer we need to do these functions for each kind of value
     // to prevent this, we work with the above functions.

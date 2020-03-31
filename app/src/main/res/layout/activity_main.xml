@@ -26,6 +26,14 @@
         android:hint="@string/user_name" />
 
     <EditText
+        android:id="@+id/etClassicPerAge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Age" />
+
+    <EditText
         android:id="@+id/etClassicPerPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

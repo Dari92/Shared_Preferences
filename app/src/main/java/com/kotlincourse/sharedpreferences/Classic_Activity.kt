@@ -19,10 +19,10 @@ class Classic_Activity : AppCompatActivity() {
         pHelper = PreferenceHelper.newInstances(applicationContext)!! //we use applicationcontext here so we can use it in all the activities.
 
         //4 - set the functions to the buttons, create the listeners for this.
-        buttonClearForm.setOnClickListener { clearFun(etClassicPerName, etClassicPerUserName, etClassicPerPassword) }
+        buttonClearForm.setOnClickListener { clearFun(etClassicPerName, etClassicPerUserName, etClassicPerAge, etClassicPerPassword) }
         buttonSave.setOnClickListener { saveData() }
         buttonLoad.setOnClickListener { getSavedContent() }
-        buttonClear.setOnClickListener { clearData(PREF_NAME, PREF_USERNAME, PREF_PASSWORD) }
+        buttonClear.setOnClickListener { clearData(PREF_NAME, PREF_USERNAME, PREF_AGE.toString(), PREF_PASSWORD) }
 
 
     }
@@ -41,6 +41,8 @@ class Classic_Activity : AppCompatActivity() {
         // for save data I need to take whatever I write in the editText and Ill save it on the preference helper
         pHelper.setString(PREF_NAME, etClassicPerName.text.toString())
         pHelper.setString(PREF_USERNAME, etClassicPerUserName.text.toString())
+        //pHelper.setInt(PREF_AGE, etClassicPerAge.text.toString().toInt())
+        pHelper.setString(PREF_AGE.toString(), etClassicPerAge.text.toString())
         pHelper.setString(PREF_PASSWORD, etClassicPerPassword.text.toString())
 
         Toast.makeText(this, "Data saved", Toast.LENGTH_SHORT).show()
@@ -49,6 +51,7 @@ class Classic_Activity : AppCompatActivity() {
     fun getSavedContent(){
         etClassicPerName.setText(pHelper.getString(PREF_NAME) ?: "")
         etClassicPerUserName.setText(pHelper.getString(PREF_USERNAME) ?: "")
+        etClassicPerAge.setText(pHelper.getString(PREF_AGE.toString()) ?: "")
         etClassicPerPassword.setText(pHelper.getString(PREF_PASSWORD) ?: "")
 
         Toast.makeText(this, "Data Retrieved", Toast.LENGTH_SHORT).show()
@@ -58,6 +61,7 @@ class Classic_Activity : AppCompatActivity() {
     fun clearData(vararg keys : String){
         for (key in keys){
             pHelper.clearString(key)
+            pHelper.clearInt(key)
         }
 
         Toast.makeText(this, "Data Deleted", Toast.LENGTH_SHORT).show()
